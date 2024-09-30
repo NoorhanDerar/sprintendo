@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrumble</title>
     <link rel="icon" href="tab-logo.png" type="png">
     <style>
         @import url('https://fonts.cdnfonts.com/css/futura-std-4');
-        @import url('https://fonts.cdnfonts.com/css/bukhari-script');
+        @import url('https://fonts.cdnfonts.com/css/bukhari-script'); 
 
         body {
-            font-family: 'Futura', sans-serif; 
+            font-family: 'Futura', sans-serif;
             line-height: 1.6;
             background-color: #ffffff;
             color: #6ec6e6;
             padding-left: 5rem;
             padding-right: 5rem;
             padding-top: 1.5rem;
-            overflow: auto;
         }
 
         body::-webkit-scrollbar {
@@ -26,7 +26,7 @@
         }
 
         header {
-            font-family: "Bukhari Script", cursive; 
+            font-family: "Bukhari Script", cursive;
             font-size: 40px;
             display: flex;
             align-items: center;
@@ -56,12 +56,11 @@
         .user-logo {
             width: 50px;
             height: 50px;
-            background-image: url('user-icon.png'); 
+            background-image: url('user-icon.png');
             background-size: cover;
             background-position: center;
             border-radius: 50%;
             border: none;
-
             transition: color 0.3s;
         }
 
@@ -75,235 +74,293 @@
             border-color: #6ec6e6;
             border: none;
             border-radius: 20px;
-            margin-left: 20px;
         }
 
         .content {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .task-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin: auto;
-            border: none;
-            border-radius: 8px;
-        }
-
-        .left-half {
-            width: 65%;
-            text-align: left;
-            padding-top: 5px;
-        }
-
-        .right-half {
-            width: 25%;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            padding-top: 15px;
+            border-radius: 8px;
+            background-color: #ffffff;
         }
 
-        .attribute-row {
+        .task-header {
             display: flex;
-            width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            flex-direction: row; /* Stack elements vertically */
+            position: relative; /* For positioning children */
         }
 
-        .attribute-row label {
-            flex: 1;
-            font-size: 18px;
-            color: #40556e;
-            text-align: left
-        }
-
-        .attribute-row select {
-            flex: 1;
-            font-size: 16px;
-            font-weight: bold;
-            color: #40556e;
-            padding: 8px;
+        .task-header textarea {
+            font-size: 30px;
+            color: #5a5959;
+            font-family: 'Trebuchet MS', sans-serif;
+            margin: 0;
+            min-width: 60%;
+            max-width: 60%;
             border: none;
-            background-color: #e8f6fb;
-            border-radius: 10px;
-            padding-inline: 10px;
-            box-sizing: border-box;
-        }
-
-        .input-group {
-            margin-bottom: 5px;
-            margin-right: 10px;
-            font-family: 'Futura', sans-serif;
-            font-size: 22px;
-            color: #40556e;
-            display: flex;
-            align-items: left;
-        }
-
-        .input-group-task-name {
-            font-family: 'Futura', sans-serif;
-            font-size: 34px;
-            color: #40556e;
-            font-weight: 700;
-            margin-bottom: 25px;
-        }
-
-        .task-name-editable {
-            width: 100%;
-            padding: 5px;
-            border: none; 
-            outline: none; 
-            border-bottom: 2px solid #e6e6e6; 
-            background-color: transparent; 
-            font-size: 32px;
-            color: #40556e;
-        }
-
-        .task-name-editable:empty:before {
-            content: '<<Untitled New Task #1>>'; 
-            font-family: 'Futura', sans-serif;
-            font-size: 32px;
-            color: #40556e; 
-            margin-right: 10px;
-        }
-
-        .input-group label {
-            padding-top: 5px;
-            margin-right: 25px; 
-            margin-bottom: 15px;
-            width: 100px; 
-            text-align: left; 
-        }
-
-        .input-group input, .input-group select {
-            font-size: 16px;
-            font-weight: bold;
-            color: #40556e;
-            padding: 8px;
-            border: none;
-            background-color: #e8f6fb;
-            border-radius: 10px;
-            padding-inline: 10px;
-            width: 100%; 
-            max-width: 250px; 
-            box-sizing: border-box; 
-            text-align: left;
-        }
-
-        .description-container {
-            margin-top: 10px;
-            margin-bottom: 15px;
-            font-size: 28px;
-            border: none; 
-            color: #40556e;
-        }
-
-        .attribute-container {
-            margin-top: 10px;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #e6e6e6; 
-            font-size: 34px;
-            color: #40556e;
-            text-align: left
-        }
-
-        .description-container textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: none; 
-            outline: none;
-            background-color: #e8f6fb; 
-            border-radius: 10px; 
-            resize: vertical; 
-            font-size: 18px;
-            color: #40556e; 
             resize: none;
-            overflow: visible;
+            outline: none;
+            font-weight: bold;
+            border-radius: 15px;
+            padding: 10px;
+            overflow: hidden;
+            height: auto;
+            line-height: 1.2;
+            background-color:#e7ebee;
         }
 
-        .button-container {
+        .button-group {
             display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-            gap: 15px;
+            gap: 10px; /* Adds spacing between the buttons */
+            margin-left: auto;
         }
 
-        .button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px; 
-            font-size: 16px;
-            cursor: pointer;
-            font-family: 'Futura', sans-serif;
-            transition: background-color 0.3s;
+        .save-button, .cancel-button {
+            padding: 10px 20px; /* Adds padding inside the buttons */
+            font-size: 16px; /* Sets the font size */
+            font-family: 'Trebuchet MS', sans-serif; /* Matches the button font with the rest of the design */
+            border: none; /* Removes default border */
+            border-radius: 30px; /* Adds rounded corners */
+            cursor: pointer; /* Changes cursor to pointer on hover */
+            transition: background-color 0.3s ease, transform 0.2s; /* Adds a smooth transition effect */
+            max-height: fit-content;
+            align-items: center;
+            margin-top: auto;
         }
 
-        .create-button {
-            background-color: #6ec6e6;
-            color: #ffffff;
-            border: none;
-            border-radius: 20px; 
-            font-size: 16px;
-            padding: 10px 20px;
+        /* Save Button Styles */
+        .save-button {
+            background-color: #6ec6e6; /* Green color for save */
+            color: white; /* White text color */
         }
 
-        .create-button:hover {
-            background-color: #5bb5d5;
+        .save-button:hover {
+            background-color: #7bd2f1; /* Darker green on hover */
+            transform: translateY(-1px); /* Slight lift on hover */
         }
 
+        /* Cancel Button Styles */
         .cancel-button {
-            background-color: #f9f9f9;
-            color: #40556e;
-            border: none;
-            border-radius: 20px; 
-            font-size: 16px;
-            padding: 10px 20px;
+            background-color: rgb(188, 192, 197); /* Gray color for cancel */
+            color: white; /* White text color */
         }
 
         .cancel-button:hover {
-            background-color: #d4d4d4;
+            background-color: rgb(209, 212, 218); /* Darker gray on hover */
+            transform: translateY(-1px); /* Slight lift on hover */
+        }
+            
+        .line {
+            width: 100%;
+            height: 2px;
+            background-color: #d3d3d3;
+            margin: 1rem 0;
         }
 
-        .tags-row{
+        .description-box {
             display: flex;
-            align-items: flex-start; /* Aligns items to the top */
+            gap: 3rem;
+            margin-right: 20rem;
+            min-height: 500px;
         }
 
-        .tags-row label {
-            flex: 1;
-            font-size: 18px;
+        .task-info {
+            width: 18%;
+            border-right: 2px solid #d3d3d3;
+            font-family: 'Trebuchet MS', sans-serif;
+            padding-right: 3rem;
+            margin-left: 2%;
+        }
+
+        .task-info h3 {
+            font-size: 28px;
             color: #40556e;
-            text-align: left;
+            font-family: 'Trebuchet MS', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-info p1 {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-info li {
+            font-size: 18px;
+            color: #5a5959;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .task-info li span {
+            display: block;
+            color: #5dacc9;
+            margin-top: 0.5rem;
+        }
+
+        .task-description {
+            max-width: 60%;
+            padding-left: 3rem;
+            letter-spacing: 0px;
+            font-weight: light;  
+        }
+
+        .task-description h3 {
+            font-size: 28px;
+            color: #40556e;
+            font-family: 'Trebuchet MS', sans-serif;
+            margin-bottom: 1rem;
+            padding-right: 3rem;
+            margin-left: -4rem;
+        }
+
+        .task-box {
+            font-size: 16px;
+            border-radius: 15px;
+            background-color:#e7ebee;
+            color: #40556e;
+            padding: 20px;
+            width: 700px;
+            height: 100px;
+            margin-bottom: 1rem;
+            padding-right: 3rem;
+            margin-left: -4rem;
+            overflow: auto;
+            border: none;
+            font-family: 'Trebuchet MS', sans-serif;
+            outline: none;
+            resize: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .task-box:focus{
+            background-color:#daf4fc;
+        }
+
+        .task-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-left: -4rem;
+            margin-top: 2rem;
+        }
+
+        .task-details div {
+            font-size: 20px;
+            color: #5a5959;
+            font-family: 'Trebuchet MS', sans-serif;
+            line-height: 1.2;    
+        }
+
+        .task-details div span {
+            display: block;
+            margin-top: 0.5rem;
+            margin-left: 2.5rem;
+        }
+
+        .tags {
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tags select{
             min-width: 100px;
-            margin-right: 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 80px;
+            color: #508dbc;
         }
 
-        .tags-label {
+        #taskStoryPoints{
+            display: flex;
+            flex-direction: column; 
+        }
+
+        #taskPriority{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .task-details select {
             flex: 1;
-            font-size: 18px;
-            color: #40556e;
-            text-align: left;
-            max-width: 150px;
+            font-size: 16px;
+            color: #5a5959;
+            padding: 8px;
+            border: none;
+            background-color:#e7ebee;
+            border-radius: 10px;
+            padding-inline: 10px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            outline: none;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+        
+        .task-details select:hover{
+            background-color:#daf4fc;
+            transform: translateY(-2px);
+            color: #508dbc;
+        }
+
+        .task-info select,input{
+            background-color:#e7ebee;
+            border-radius: 10px;
+            margin-top: 10px;
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            color: #5a5959;
+            font-family: 'Trebuchet MS', sans-serif;
+            transition: background-color 0.3s ease,transform 0.3s ease,color 0.3s ease;
+        }
+
+        .task-info select:hover{
+            background-color:#daf4fc;
+            transform: translateY(-2px);
+            color: #508dbc;
+        }
+
+        .task-info input:focus{
+            background-color:#daf4fc;
+        }
+
+        .task-info input{
+            display: flex;
+            max-width: 100%;
         }
 
         .tags-checkbox-group {
             display: flex;
             flex-direction: column;
+            max-width: 300px;
             align-items: flex-start;
-            background-color: #e8f6fb;
+            background-color: #e7ebee;
             border-radius: 10px;
-            padding-inline: 10px;
             padding: 15px;
+        }
+
+        .tags-checkbox-group label {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
         }
 
         .tags-checkbox-group input[type="checkbox"] {
             margin-right: 10px;
-            margin-bottom: 8px; /* Adds space between checkboxes */
+            margin-left: 0;
         }
 
-
+        .tags {
+            display: flex;
+            align-items: flex-start; /* Aligns items in the flex container */
+            gap: 10px; /* Adds space between "Tags:" and the checkboxes */
+        }
+        
     </style>
 </head>
 <body>
@@ -317,72 +374,57 @@
         <div class="user-logo"></div>
     </header>
     <hr>
-    
+
     <div class="content">
-        <!-- Task Creation Form -->
-         <form>
-            <div class="task-container">
-                <!-- Left Half: Task Name and Description -->
-                <div class="left-half">
-                    <!-- Task Name Editable Input -->
-                    <div class="input-group-task-name">
-                        <div id="taskName" class="task-name-editable" contenteditable="true" required></div>
-                    </div>
+        <div class="task-header">
+            <textarea type="text" id="taskTitle" class="task-title-input" placeholder="Task Title" value=""></textarea>
+            <div class="button-group">
+                <button id="saveButton" class="save-button">Save Changes</button>
+                <button onclick="window.history.back()" class="cancel-button">Cancel</button>
+            </div>
+        </div>
 
-                    <!-- Task Description -->
-                    <div class="description-container">
-                        <label for="taskDescription">Description:</label>
-                        <textarea id="taskDescription" name="taskDescription" rows="5" placeholder="Enter task description here..." required></textarea>
-                    </div>
-                </div>
+        <div class="line"></div>
 
-                <!-- Right Half: Task Attributes -->
-                <div class="right-half">
-                    <div class="attribute-container">
-                        <label>Attributes</label>
-                    </div>
-
-                    <div class="attribute-row">
-                        <label for="attribute1">Assignee</label>
-                        <select id="attribute1" name="attribute1">
-                            <option value="Alex Lee">Alex Lee</option>
-                            <option value="Thomas Dixon">Thomas Dixon</option>
-                            <option value="Noah Parker">Noah Parker</option>
+        <div class="description-box">
+            <div class="task-info">
+                <h3>Information</h3>
+                <ul>
+                    <li><strong>Task Status:</strong>
+                        <select id="taskStatus" name="taskStatus">
+                            <option value="Not-Started">Not Started</option>
+                            <option value="In-progress">In Progress</option>
+                            <option value="Completed">Completed</option>
                         </select>
-                    </div>
-
-                    <div class="attribute-row">
-                        <label for="attribute2">Priority</label>
-                        <select id="attribute2" name="attribute2">
-                            <option value="Low">🟢 Low</option>
-                            <option value="Medium">🟡 Medium</option>
-                            <option value="Important">🟠 Important</option>
-                            <option value="Urgent">🔴 Urgent</option>
-                        </select>
-                    </div>
-
-                    <div class="attribute-row">
-                        <label for="attribute3">Stages</label>
-                        <select id="attribute3" name="attribute3">
+                    </li>
+                    <li><strong>Task Assignee:</strong>
+                        <input type="text" id="taskAssignee" placeholder="Assignee Name" value="">
+                    </li>
+                    <li><strong>Task Stages:</strong>
+                        <select id="taskStage" name="taskStage">
                             <option value="Planning">Planning</option>
                             <option value="Developing">Developing</option>
                             <option value="Testing">Testing</option>
                             <option value="Integrating">Integrating</option>
                         </select>
-                    </div>
-
-                    <div class="attribute-row">
-                        <label for="attribute4">Status</label>
-                        <select id="attribute4" name="attribute4">
-                            <option value="Not-Started">Not Started</option>
-                            <option value="In-progress">In Progress</option>
-                            <option value="Completed">Completed</option>
+                    </li>
+                    <li><strong>Task Type:</strong>
+                        <select id="taskType" name="attribute7">
+                            <option value="Story">Story</option>
+                            <option value="Bug">Bug</option>
                         </select>
-                    </div>
+                    </li>
+                </ul>
+            </div>
 
-                    <div class="attribute-row">
-                        <label for="attribute5">Story Points</label>
-                        <select id="attribute5" name="attribute5">
+            <div class="task-description">
+                <h3>Description</h3>
+                <textarea id="taskDescription" class="task-box" placeholder="Task description..."></textarea>
+
+                <div class="task-details">
+                    <div class="story-points">
+                        <strong>Story Points:</strong>
+                        <select id="taskStoryPoints" name="taskStoryPoints">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -395,111 +437,158 @@
                             <option value="10">10</option>
                         </select>
                     </div>
-
-                    <div class="tags-row">
-                        <div class="tags-label"><label for="attribute6">Tags</label></div>
-    
-                        <div class="tags-checkbox-group" id="attribute6">
-                            <input type="checkbox" id="frontend" name="attribute6" value="Front-End">
-                            <label for="frontend">Front-End</label><br>
-                    
-                            <input type="checkbox" id="backend" name="attribute6" value="Back-End">
-                            <label for="backend">Back-End</label><br>
-                    
-                            <input type="checkbox" id="ui" name="attribute6" value="UI">
-                            <label for="ui">UI</label><br>
-                    
-                            <input type="checkbox" id="ux" name="attribute6" value="UX">
-                            <label for="ux">UX</label><br>
-                    
-                            <input type="checkbox" id="database" name="attribute6" value="Database">
-                            <label for="database">Database</label><br>
-                    
-                            <input type="checkbox" id="api" name="attribute6" value="API">
-                            <label for="api">API</label><br>
-                    
-                            <input type="checkbox" id="framework" name="attribute6" value="Framework">
-                            <label for="framework">Framework</label><br>
-                    
-                            <input type="checkbox" id="testing" name="attribute6" value="Testing">
-                            <label for="testing">Testing</label>
-                        </div>
-                    </div>
-
-                    <div class="attribute-row">
-                        <label for="attribute7">Type</label>
-                        <select id="attribute7" name="attribute7">
-                            <option value="Story">Story</option>
-                            <option value="Bug">Bug</option>
+                    <div class="priority">
+                        <strong>Priority:</strong>
+                        <select id="taskPriority" name="taskPriority">
+                            <option value="Low">🟢 Low</option>
+                            <option value="Medium">🟡 Medium</option>
+                            <option value="Important">🟠 Important</option>
+                            <option value="Urgent">🔴 Urgent</option>
                         </select>
+                    </div>
+                    <div class="tags">
+                        <strong>Tags:</strong>
+                        <div class="tags-checkbox-group" id="attribute6">
+                            <label for="frontend">
+                                <input type="checkbox" id="frontend" name="attribute6" value="Front-End">
+                                Front-End
+                            </label>
+                    
+                            <label for="backend">
+                                <input type="checkbox" id="backend" name="attribute6" value="Back-End">
+                                Back-End
+                            </label>
+                    
+                            <label for="ui">
+                                <input type="checkbox" id="ui" name="attribute6" value="UI">
+                                UI
+                            </label>
+                    
+                            <label for="ux">
+                                <input type="checkbox" id="ux" name="attribute6" value="UX">
+                                UX
+                            </label>
+                    
+                            <label for="database">
+                                <input type="checkbox" id="database" name="attribute6" value="Database">
+                                Database
+                            </label>
+                    
+                            <label for="api">
+                                <input type="checkbox" id="api" name="attribute6" value="API">
+                                API
+                            </label>
+                    
+                            <label for="framework">
+                                <input type="checkbox" id="framework" name="attribute6" value="Framework">
+                                Framework
+                            </label>
+                    
+                            <label for="testing">
+                                <input type="checkbox" id="testing" name="attribute6" value="Testing">
+                                Testing
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
-
-        <!-- Buttons -->
-        <div class="button-container">
-            <button class="create-button">Create Task</button>
-            <button class="cancel-button">Cancel</button>
         </div>
     </div>
 
+    <!-- Add Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+
     <script>
-        const form = document.querySelector('.create-button');
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCP5qp7vIi7jKfDlQRSdM_gNlh0k4DafBk",
+            authDomain: "sprintendo-67900.firebaseapp.com",
+            projectId: "sprintendo-67900",
+            storageBucket: "sprintendo-67900.appspot.com",
+            messagingSenderId: "32722321701",
+            appId: "1:32722321701:web:31315e295186a4d28b9acc",
+            measurementId: "G-MXRSGCEW4S"
+        };
 
-        form.addEventListener('click', function() {
-            const title = document.getElementById('taskName').innerText.trim();
-            const description = document.getElementById('taskDescription').value;
-            const priority = document.getElementById('attribute2').value;
-            const assignee = document.getElementById('attribute1').value;
-            const stages = document.getElementById('attribute3').value;
-            const status = document.getElementById('attribute4').value;
-            const storyPoints = document.getElementById('attribute5').value;
-            const type = document.getElementById('attribute7').value;
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        auth.signInAnonymously(); // Allow anonymous authentication for testing
 
-            const tagElements = document.querySelectorAll('#attribute6 input[type="checkbox"]:checked');
-            const tags = Array.from(tagElements).map(checkbox => checkbox.value);
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const taskId = urlParams.get('taskId');
 
-            const taskName = document.getElementById('taskName').innerText.trim();
-            if (!taskName) {
-                alert('Please enter a task name before creating the task.');
-                return;
-            }
+            // Retrieve tasks from Firestore
+            db.collection("tasks").doc(taskId).get().then((doc) => {
+                if (doc.exists) {
+                    const task = doc.data();
+                    document.getElementById('taskTitle').value = task.title;
+                    document.getElementById('taskAssignee').value = task.assignee || '';
+                    document.getElementById('taskDescription').value = task.description || '';
 
-            const id = generateUniqueId();
-            const createdTime = getFormattedDateTime();
-            // Save the task in local storage
-            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-            const productTasks = JSON.parse(localStorage.getItem('product-backlog')) || [];
-            const editTime = [];
-            tasks.push({ title, description, priority, assignee, stages, status, storyPoints, tags, type, id, createdTime, editTime});
-            productTasks.push({ title, description, priority, assignee, stages, status, storyPoints, tags, type, id, createdTime, editTime})
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            localStorage.setItem('product-backlog', JSON.stringify(productTasks));
+                    const statusContainer = document.getElementById('taskStatus');
+                    if (task.status) {
+                        statusContainer.value = task.status;
+                    }
 
-            // Redirect with task title as query parameter
-            window.location.href = `overview.html?newTask=${encodeURIComponent(title)}`;
+                    const typeContainer = document.getElementById('taskType');
+                    if (task.type) {
+                        typeContainer.value = task.type;
+                    }
+
+                    const stageContainer = document.getElementById('taskStage');
+                    if (task.stage) {
+                        stageContainer.value = task.stage;
+                    }
+
+                    const pointsContainer = document.getElementById('taskStoryPoints');
+                    if (task.storyPoints) {
+                        pointsContainer.value = task.storyPoints;
+                    }
+
+                    const priorityContainer = document.getElementById('taskPriority');
+                    if (task.priority) {
+                        priorityContainer.value = `${task.priority || 'No Priority'}`;
+                    }
+
+                    const taskTags = task.tags || []; 
+                    const checkboxes = document.querySelectorAll('.tags-checkbox-group input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => {
+                        checkbox.checked = taskTags.includes(checkbox.value);
+                    });
+                } else {
+                    console.error('Task not found');
+                }
+            });
+
+            // Save changes to the task
+            document.getElementById('saveButton').addEventListener('click', function () {
+                const updatedTask = {
+                    title: document.getElementById('taskTitle').value,
+                    status: document.getElementById('taskStatus').value,
+                    assignee: document.getElementById('taskAssignee').value,
+                    stages: document.getElementById('taskStage').value,
+                    type: document.getElementById('taskType').value,
+                    description: document.getElementById('taskDescription').value,
+                    storyPoints: parseInt(document.getElementById('taskStoryPoints').value) || 0,
+                    priority: document.getElementById('taskPriority').value,
+                    tags: Array.from(document.querySelectorAll('.tags-checkbox-group input[type="checkbox"]:checked')).map(checkbox => checkbox.value),
+                    editTime: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                // Update the task in Firestore
+                db.collection("tasks").doc(taskId).update(updatedTask).then(() => {
+                    console.log('Task updated successfully');
+                    window.history.back(); // Go back after saving
+                }).catch((error) => {
+                    console.error('Error updating task: ', error);
+                });
+            });
         });
-
-        document.querySelector('.cancel-button').addEventListener('click', function() {
-            window.location.href = 'overview.html';
-        });
-
-        function generateUniqueId() {
-            return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
-        }
-
-        function getFormattedDateTime() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        }
-    </script>
+    </script>    
 </body>
 </html>
