@@ -442,64 +442,73 @@
             <button class="create-button">Create Task</button>
             <button class="cancel-button">Cancel</button>
         </div>
+                <!-- Display Tasks Here -->
+        <h2>Task List</h2>
+        <div id="task-list"></div> <!-- This will display tasks -->
     </div>
 
-    <script>
-        const form = document.querySelector('.create-button');
+    <!-- Add Firebase SDKs and your code here -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
 
-        form.addEventListener('click', function() {
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCP5qp7vIi7jKfDlQRSdM_gNlh0k4DafBk",
+            authDomain: "sprintendo-67900.firebaseapp.com",
+            projectId: "sprintendo-67900",
+            storageBucket: "sprintendo-67900.appspot.com",
+            messagingSenderId: "32722321701",
+            appId: "1:32722321701:web:31315e295186a4d28b9acc",
+            measurementId: "G-MXRSGCEW4S"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        auth.signInAnonymously(); // Allow anonymous authentication for testing
+
+        // Function to create a task
+        document.querySelector('.create-button').addEventListener('click', function() {
             const title = document.getElementById('taskName').innerText.trim();
             const description = document.getElementById('taskDescription').value;
-            const priority = document.getElementById('attribute2').value;
-            const assignee = document.getElementById('attribute1').value;
-            const stages = document.getElementById('attribute3').value;
-            const status = document.getElementById('attribute4').value;
-            const storyPoints = document.getElementById('attribute5').value;
-            const type = document.getElementById('attribute7').value;
-
-            const tagElements = document.querySelectorAll('#attribute6 input[type="checkbox"]:checked');
-            const tags = Array.from(tagElements).map(checkbox => checkbox.value);
-
-            const taskName = document.getElementById('taskName').innerText.trim();
-            if (!taskName) {
-                alert('Please enter a task name before creating the task.');
-                return;
-            }
-
-            const id = generateUniqueId();
-            const createdTime = getFormattedDateTime();
-            // Save the task in local storage
-            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-            const productTasks = JSON.parse(localStorage.getItem('product-backlog')) || [];
-            const editTime = [];
-            tasks.push({ title, description, priority, assignee, stages, status, storyPoints, tags, type, id, createdTime, editTime});
-            productTasks.push({ title, description, priority, assignee, stages, status, storyPoints, tags, type, id, createdTime, editTime})
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            localStorage.setItem('product-backlog', JSON.stringify(productTasks));
-
-            // Redirect with task title as query parameter
-            window.location.href = `overview.html?newTask=${encodeURIComponent(title)}`;
+            createTask(title, description);
         });
 
-        document.querySelector('.cancel-button').addEventListener('click', function() {
-            window.location.href = 'overview.html';
-        });
-
-        function generateUniqueId() {
-            return 'task-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+        function createTask(title, description) {
+            const user = auth.currentUser; // Get current user
+            db.collection("tasks").add({
+                title: title,
+                description: description,
+                createdBy: user ? user.uid : 'Anonymous',
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                console.log('Task created successfully');
+                displayTasks(); // Refresh the task list
+            }).catch((error) => {
+                console.error('Error creating task: ', error);
+            });
         }
 
-        function getFormattedDateTime() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
+        // Function to retrieve and display tasks
+        function displayTasks() {
+            db.collection("tasks").orderBy("timestamp").onSnapshot((querySnapshot) => {
+                const taskList = document.getElementById('task-list'); // This should be an existing element in your HTML
+                taskList.innerHTML = ''; // Clear existing tasks
 
-            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                querySnapshot.forEach((doc) => {
+                    const task = doc.data();
+                    const taskElement = document.createElement('div');
+                    taskElement.innerText = `${task.title}: ${task.description} (Created by: ${task.createdBy})`;
+                    taskList.appendChild(taskElement);
+                });
+            });
         }
+
+        // Call displayTasks on page load
+        window.onload = displayTasks;
     </script>
 </body>
 </html>
