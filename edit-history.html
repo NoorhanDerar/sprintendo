@@ -172,9 +172,29 @@
       </tbody>
     </table>
   </div>
-</body>
 
+    <!-- Add Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
     <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCP5qp7vIi7jKfDlQRSdM_gNlh0k4DafBk",
+            authDomain: "sprintendo-67900.firebaseapp.com",
+            projectId: "sprintendo-67900",
+            storageBucket: "sprintendo-67900.appspot.com",
+            messagingSenderId: "32722321701",
+            appId: "1:32722321701:web:31315e295186a4d28b9acc",
+            measurementId: "G-MXRSGCEW4S"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        auth.signInAnonymously(); // Allow anonymous authentication for testing
+
         document.addEventListener('DOMContentLoaded', function () {
             const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             const urlParams = new URLSearchParams(window.location.search);
@@ -205,7 +225,7 @@
             function populateEditingHistory() {
                 historyTableBody.innerHTML = ''; // Clear existing table rows
 
-                const editTime = task.editTime
+                const editTime = task.editTime || [];
                 editTime.forEach((time, timeIndex) => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -213,8 +233,6 @@
                         <td>${formatEditedDate(time)}</td>
                         <td>${formatEditedTime(time)}</td>
                     `;
-
-
                     historyTableBody.appendChild(row);
                 });
             }
