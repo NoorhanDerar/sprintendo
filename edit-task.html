@@ -87,8 +87,8 @@
         .task-header {
             display: flex;
             margin-bottom: 1rem;
-            flex-direction: row; /* Stack elements vertically */
-            position: relative; /* For positioning children */
+            flex-direction: row;
+            position: relative;
         }
 
         .task-header textarea {
@@ -112,45 +112,45 @@
 
         .button-group {
             display: flex;
-            gap: 10px; /* Adds spacing between the buttons */
+            gap: 10px;
             margin-left: auto;
+            display: flex;
+            flex-direction: row;
         }
 
         .save-button, .cancel-button {
-            padding: 10px 20px; /* Adds padding inside the buttons */
-            font-size: 16px; /* Sets the font size */
-            font-family: 'Trebuchet MS', sans-serif; /* Matches the button font with the rest of the design */
-            border: none; /* Removes default border */
-            border-radius: 30px; /* Adds rounded corners */
-            cursor: pointer; /* Changes cursor to pointer on hover */
-            transition: background-color 0.3s ease, transform 0.2s; /* Adds a smooth transition effect */
+            padding: 10px 20px;
+            font-size: 16px;
+            font-family: 'Trebuchet MS', sans-serif;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
             max-height: fit-content;
             align-items: center;
             margin-top: auto;
         }
 
-        /* Save Button Styles */
         .save-button {
-            background-color: #6ec6e6; /* Green color for save */
-            color: white; /* White text color */
+            background-color: #6ec6e6;
+            color: white;
         }
 
         .save-button:hover {
-            background-color: #7bd2f1; /* Darker green on hover */
-            transform: translateY(-1px); /* Slight lift on hover */
+            background-color: #7bd2f1;
+            transform: translateY(-1px);
         }
 
-        /* Cancel Button Styles */
         .cancel-button {
-            background-color: rgb(188, 192, 197); /* Gray color for cancel */
-            color: white; /* White text color */
+            background-color: rgb(188, 192, 197);
+            color: white;
         }
 
         .cancel-button:hover {
-            background-color: rgb(209, 212, 218); /* Darker gray on hover */
-            transform: translateY(-1px); /* Slight lift on hover */
+            background-color: rgb(209, 212, 218);
+            transform: translateY(-1px);
         }
-            
+
         .line {
             width: 100%;
             height: 2px;
@@ -180,12 +180,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .task-info p1 {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
         .task-info li {
             font-size: 18px;
             color: #5a5959;
@@ -193,17 +187,10 @@
             line-height: 1.2;
         }
 
-        .task-info li span {
-            display: block;
-            color: #5dacc9;
-            margin-top: 0.5rem;
-        }
-
         .task-description {
             max-width: 60%;
             padding-left: 3rem;
-            letter-spacing: 0px;
-            font-weight: light;  
+            font-weight: light;
         }
 
         .task-description h3 {
@@ -246,45 +233,6 @@
             margin-top: 2rem;
         }
 
-        .task-details div {
-            font-size: 20px;
-            color: #5a5959;
-            font-family: 'Trebuchet MS', sans-serif;
-            line-height: 1.2;    
-        }
-
-        .task-details div span {
-            display: block;
-            margin-top: 0.5rem;
-            margin-left: 2.5rem;
-        }
-
-        .tags {
-            display: inline-block;
-            font-weight: bold;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .tags select{
-            min-width: 100px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-left: 80px;
-            color: #508dbc;
-        }
-
-        #taskStoryPoints{
-            display: flex;
-            flex-direction: column; 
-        }
-
-        #taskPriority{
-            display: flex;
-            flex-direction: column;
-        }
-
         .task-details select {
             flex: 1;
             font-size: 16px;
@@ -299,39 +247,10 @@
             outline: none;
             font-family: 'Trebuchet MS', sans-serif;
         }
-        
         .task-details select:hover{
             background-color:#daf4fc;
             transform: translateY(-2px);
             color: #508dbc;
-        }
-
-        .task-info select,input{
-            background-color:#e7ebee;
-            border-radius: 10px;
-            margin-top: 10px;
-            padding: 8px;
-            border: none;
-            font-size: 16px;
-            outline: none;
-            color: #5a5959;
-            font-family: 'Trebuchet MS', sans-serif;
-            transition: background-color 0.3s ease,transform 0.3s ease,color 0.3s ease;
-        }
-
-        .task-info select:hover{
-            background-color:#daf4fc;
-            transform: translateY(-2px);
-            color: #508dbc;
-        }
-
-        .task-info input:focus{
-            background-color:#daf4fc;
-        }
-
-        .task-info input{
-            display: flex;
-            max-width: 100%;
         }
 
         .tags-checkbox-group {
@@ -354,13 +273,6 @@
             margin-right: 10px;
             margin-left: 0;
         }
-
-        .tags {
-            display: flex;
-            align-items: flex-start; /* Aligns items in the flex container */
-            gap: 10px; /* Adds space between "Tags:" and the checkboxes */
-        }
-        
     </style>
 </head>
 <body>
@@ -495,100 +407,58 @@
         </div>
     </div>
 
-    <!-- Add Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+    <script type="module">
+        // Import the functions you need from Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
-    <script>
-        // Your Firebase configuration
+        // Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyCP5qp7vIi7jKfDlQRSdM_gNlh0k4DafBk",
-            authDomain: "sprintendo-67900.firebaseapp.com",
-            projectId: "sprintendo-67900",
-            storageBucket: "sprintendo-67900.appspot.com",
-            messagingSenderId: "32722321701",
-            appId: "1:32722321701:web:31315e295186a4d28b9acc",
-            measurementId: "G-MXRSGCEW4S"
+            apiKey: "AIzaSyA5qoW4DP8CcgZZZGsyFgz_1Ov-hf38PT0",
+            authDomain: "sprinten-beef9.firebaseapp.com",
+            databaseURL: "https://sprinten-beef9-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "sprinten-beef9",
+            storageBucket: "sprinten-beef9.appspot.com",
+            messagingSenderId: "1083441100882",
+            appId: "1:1083441100882:web:b7bce222f154503c23c78b",
+            measurementId: "G-TZ9T54LHBF"
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-        auth.signInAnonymously(); // Allow anonymous authentication for testing
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const taskId = urlParams.get('taskId');
+        document.getElementById('saveButton').addEventListener('click', async () => {
+            const taskId = new URLSearchParams(window.location.search).get('taskId');
+            const title = document.getElementById('taskTitle').value.trim();
+            const assignee = document.getElementById('taskAssignee').value;
+            const status = document.getElementById('taskStatus').value;
+            const stage = document.getElementById('taskStage').value;
+            const type = document.getElementById('taskType').value;
+            const description = document.getElementById('taskDescription').value;
+            const storyPoints = document.getElementById('taskStoryPoints').value;
+            const priority = document.getElementById('taskPriority').value;
 
-            // Retrieve tasks from Firestore
-            db.collection("tasks").doc(taskId).get().then((doc) => {
-                if (doc.exists) {
-                    const task = doc.data();
-                    document.getElementById('taskTitle').value = task.title;
-                    document.getElementById('taskAssignee').value = task.assignee || '';
-                    document.getElementById('taskDescription').value = task.description || '';
+            const tagElements = document.querySelectorAll('#attribute6 input[type="checkbox"]:checked');
+            const tags = Array.from(tagElements).map(checkbox => checkbox.value);
 
-                    const statusContainer = document.getElementById('taskStatus');
-                    if (task.status) {
-                        statusContainer.value = task.status;
-                    }
-
-                    const typeContainer = document.getElementById('taskType');
-                    if (task.type) {
-                        typeContainer.value = task.type;
-                    }
-
-                    const stageContainer = document.getElementById('taskStage');
-                    if (task.stage) {
-                        stageContainer.value = task.stage;
-                    }
-
-                    const pointsContainer = document.getElementById('taskStoryPoints');
-                    if (task.storyPoints) {
-                        pointsContainer.value = task.storyPoints;
-                    }
-
-                    const priorityContainer = document.getElementById('taskPriority');
-                    if (task.priority) {
-                        priorityContainer.value = `${task.priority || 'No Priority'}`;
-                    }
-
-                    const taskTags = task.tags || []; 
-                    const checkboxes = document.querySelectorAll('.tags-checkbox-group input[type="checkbox"]');
-                    checkboxes.forEach(checkbox => {
-                        checkbox.checked = taskTags.includes(checkbox.value);
-                    });
-                } else {
-                    console.error('Task not found');
-                }
+            // Update task in Firestore
+            const taskRef = doc(db, 'tasks', taskId);
+            await updateDoc(taskRef, {
+                title,
+                assignee,
+                status,
+                stage,
+                type,
+                description,
+                storyPoints,
+                priority,
+                tags
             });
 
-            // Save changes to the task
-            document.getElementById('saveButton').addEventListener('click', function () {
-                const updatedTask = {
-                    title: document.getElementById('taskTitle').value,
-                    status: document.getElementById('taskStatus').value,
-                    assignee: document.getElementById('taskAssignee').value,
-                    stages: document.getElementById('taskStage').value,
-                    type: document.getElementById('taskType').value,
-                    description: document.getElementById('taskDescription').value,
-                    storyPoints: parseInt(document.getElementById('taskStoryPoints').value) || 0,
-                    priority: document.getElementById('taskPriority').value,
-                    tags: Array.from(document.querySelectorAll('.tags-checkbox-group input[type="checkbox"]:checked')).map(checkbox => checkbox.value),
-                    editTime: firebase.firestore.FieldValue.serverTimestamp()
-                };
-
-                // Update the task in Firestore
-                db.collection("tasks").doc(taskId).update(updatedTask).then(() => {
-                    console.log('Task updated successfully');
-                    window.history.back(); // Go back after saving
-                }).catch((error) => {
-                    console.error('Error updating task: ', error);
-                });
-            });
+            window.history.back();
         });
-    </script>    
+    </script>
 </body>
 </html>
+
